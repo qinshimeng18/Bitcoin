@@ -11,7 +11,7 @@ def main():
                         autocommit=False, autoflush=True,
                         expire_on_commit=False))
 	# path = r'/home/lgn/Desktop/blk00000.dat'
-	for path,dirs,files in os.walk("/media/lgn/Newsoft/BTC/blocks/"):
+	for path,dirs,files in os.walk(r"C:\Users\xy2\Desktop\blocks"):
 		for file in files:
 			if file.endswith(".dat"):
 				blk_dat = Bitcoin().analyze(os.path.join(path,file),db)

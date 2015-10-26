@@ -19,7 +19,7 @@ class Bitcoin:
 				try:
 					block = Block(blockchain)
 					# block.toString()
-					add_nodes_edges(block.Txs,block.blockHeader.time,db)
+					add_nodes_edges(block.Txs,block.blockHeader.time,db,path)
 					# blk_time(path[-12:],block.blockHeader.time,db)
 					if not block:
 						print 'in if'
