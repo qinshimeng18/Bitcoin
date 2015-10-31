@@ -1,4 +1,4 @@
-# Complex network of bitcoin transaction#  
+# Complex network of bitcoin transaction
 **Southeast University**
     
 ##使用##
