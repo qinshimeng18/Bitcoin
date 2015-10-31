@@ -12,10 +12,8 @@ class Bitcoin:
 		"""
 		print path
 		with open(path,'rb') as blockchain:
-			# counter = 0
 			# blockchain.seek(100000000,0)
 			while True:
-				# print 'number',counter,'****************************'
 				try:
 					block = Block(blockchain)
 					# block.toString()
@@ -27,6 +25,6 @@ class Bitcoin:
 				except Exception, e:
 					print e
 					print 'jump one block from dat:',path
-					break 
+					break
 
-				
+

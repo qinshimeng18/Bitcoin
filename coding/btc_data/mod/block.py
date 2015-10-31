@@ -1,8 +1,6 @@
 from blocktools import *
 from address import in_address,out_address_25,out_address_67
 import traceback
-# from databases.tables import Nodes,Edges
-# from databases.DataStore import add_nodes_edges
 class Block():
 	def __init__(self, blockchain):
 		self.magicNum = uint4(blockchain)
@@ -15,8 +13,6 @@ class Block():
 		for i in range(0, self.txCount):
 			tx = Tx(blockchain,i)
 			self.Txs.append(tx)
-		# add_nodes_edges(self.Txs,db)
-				
 
 	def setHeader(self, blockchain):
 		self.blockHeader = BlockHeader(blockchain)
@@ -28,11 +24,11 @@ class Block():
 		print ""
 		print "#"*10 + " Block Header " + "#"*10
 		self.blockHeader.toString()
-		print 
+		print
 		print "##### Tx Count: %d" % self.txCount
 		for t in self.Txs:
 			t.toString()
-	
+
 class BlockHeader:
 	def __init__(self, blockchain):
 		self.version = uint4(blockchain)
@@ -48,7 +44,7 @@ class BlockHeader:
 		print "Time\t\t %s" % str(self.time)
 		print "Difficulty\t %8x" % self.bits
 		print "Nonce\t\t %s" % self.nonce
-	
+
 
 class Tx:
 	def __init__(self, blockchain,tx_id):
@@ -63,9 +59,9 @@ class Tx:
 		if self.outCount > 0:
 			for i in range(0, self.outCount):
 				output = txOutput(blockchain)
-				self.outputs.append(output)	
+				self.outputs.append(output)
 		self.lockTime = uint4(blockchain)
-		
+
 	def toString(self):
 		print ""
 		print "="*10 + " New Transaction " + "="*10
@@ -78,7 +74,7 @@ class Tx:
 		for o in self.outputs:
 			o.toString()
 		print "Lock Time:\t %d" % self.lockTime
-	
+
 
 class txInput:
 	def __init__(self, blockchain,tx_id):
@@ -95,7 +91,7 @@ class txInput:
 				self.scriptSig = blockchain.read(self.scriptLen)
 				self.input_address=in_address(self.scriptSig.encode('hex')[-130:])
 		self.seqNo = uint4(blockchain)
-		
+
 
 	def toString(self):
 		print "Previous Hash:\t %s" % hashStr(self.prevhash)
@@ -104,9 +100,9 @@ class txInput:
 		print "Script Sig:\t %s" % hashStr(self.scriptSig)
 		print "input_address:\t %s" % self.input_address
 		print "Sequence:\t %8x" % self.seqNo
-		
+
 class txOutput:
-	def __init__(self, blockchain):	
+	def __init__(self, blockchain):
 		self.value = uint8(blockchain)
 		self.scriptLen = varint(blockchain)
 		self.pubkey = blockchain.read(self.scriptLen)
@@ -115,7 +111,7 @@ class txOutput:
 			self.output_address=out_address_67(self.pubkey.encode('hex')[4:132])
 		elif self.scriptLen <30 and self.scriptLen > 20:
 			self.output_address=out_address_25(self.pubkey.encode('hex')[6:46])
-		
+
 
 	def toString(self):
 		print "Value:\t\t %d" % self.value
