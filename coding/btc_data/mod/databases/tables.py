@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from sqlalchemy import Column, String, Integer, VARCHAR,ForeignKey, Float 
+from sqlalchemy import Column, String, Integer, VARCHAR,ForeignKey, Float
 from sqlalchemy.orm import relationship,backref
 from db import engine,Base
 
@@ -14,11 +14,10 @@ class Nodes(Base):
 class Edges_0910(Base):
 	__tablename__ = 'edges_0910'
 	id = Column(Integer,primary_key=True)
-	# source = Column(VARCHAR(64),ForeignKey('nodes.node', ondelete='CASCADE'))
 	source = Column(VARCHAR(64))
 	target = Column(VARCHAR(64))
 	weight = Column(Float)
-	time = Column(VARCHAR(64))
+	time = Column(Integer)
 
 class Edges_2011(Base):
 	__tablename__ = 'edges_2011'
