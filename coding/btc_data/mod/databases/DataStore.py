@@ -5,7 +5,7 @@ import time
 def add_nodes_edges(Txs,block_time,db,path):
 	for tx in Txs:
 		for input in tx.inputs:
-			for output in tx.outputs:
+			for output in tx.outputs: 
 				# nodes = Nodes(node=input.input_address)
 				# nodet = Nodes(node=output.output_address)
 				# db.add(nodes)
